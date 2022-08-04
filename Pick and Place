@@ -1,0 +1,54 @@
+
+#define BLYNK_TEMPLATE_ID "TMPLAYXKuhl4"
+#define BLYNK_DEVICE_NAME "pink v2"
+
+#define BLYNK_FIRMWARE_VERSION        "0.1.0"
+
+#define BLYNK_PRINT Serial
+//#define BLYNK_DEBUG
+
+#define APP_DEBUG
+
+// Uncomment your board, or configure a custom board in Settings.h
+//#define USE_SPARKFUN_BLYNK_BOARD
+//#define USE_NODE_MCU_BOARD
+//#define USE_WITTY_CLOUD_BOARD
+//#define USE_WEMOS_D1_MINI
+
+#include "BlynkEdgent.h"
+#include <Servo.h>
+int base = D0;
+int arm = D1;
+int grip = D2;
+Servo servo1;
+Servo servo2;
+Servo servo3;
+
+
+void setup()
+{
+  Serial.begin(115200);
+  servo1.attach(D1);
+  servo2.attach(D2);
+  servo3.attach(D3);
+  BlynkEdgent.begin();
+}
+
+void loop() {
+  BlynkEdgent.run();
+}
+BLYNK_WRITE(V0) {
+
+servo1.write(param.asInt());
+
+}
+BLYNK_WRITE(V1) {
+
+servo2.write(param.asInt());
+
+}
+BLYNK_WRITE(V2) {
+
+servo3.write(param.asInt());
+
+}
